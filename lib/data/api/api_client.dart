@@ -15,6 +15,7 @@ class ApiClient extends GetConnect implements GetxService {
     _mainHeaders = {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer $token',
+      "HttpHeaders.contentTypeHeader": "application/json"
     };
   }
 

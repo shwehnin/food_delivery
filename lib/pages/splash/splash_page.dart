@@ -6,6 +6,7 @@ import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/routes/route_helper.dart';
 import '../../controllers/popular_product_controller.dart';
 import '../../controllers/recommended_product_controller.dart';
+import 'package:food_delivery/controllers/auth_controller.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -26,6 +27,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    Get.find<AuthController>().updateToken();
     _loadResource();
     controller = AnimationController(
       vsync: this,

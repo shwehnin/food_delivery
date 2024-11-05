@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../models/order_model.dart';
 import 'package:food_delivery/utils/color.dart';
 import 'package:food_delivery/utils/dimensions.dart';
-// import 'package:webview_flutter/webview_flutter.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import 'package:food_delivery/base/custom_loader.dart';
 import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/app_constants.dart';
@@ -24,13 +24,40 @@ class _PaymentPageState extends State<PaymentPage> {
   bool _isLoading = true;
   // final Completer<WebViewController> _controller =
   //     Completer<WebViewController>();
-  // late WebViewController controllerGlobal;
+  late WebViewController _controller;
 
   @override
   void initState() {
     super.initState();
     selectedUrl =
         "${AppConstants.BASE_URL}/payment-mobile?customer_id=${widget.orderModel.userId}&order_id=${widget.orderModel.id}";
+
+    _controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setUserAgent(
+          'Mozilla/5.0 (iPhone; CPU iPhone OS 9_3 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13E233 Safari/601.1')
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onProgress: (int progress) {
+            print("Web view loading progress $progress");
+          },
+          onPageStarted: (String url) {
+            print("Page start loading $url");
+            setState(() {
+              _isLoading = true;
+            });
+            _redirectUrl(url);
+          },
+          onPageFinished: (String url) {
+            print("Page finished loading $url");
+            setState(() {
+              _isLoading = false;
+            });
+            _redirectUrl(url);
+          },
+        ),
+      )
+      ..loadRequest(Uri.parse(selectedUrl));
   }
 
   @override
@@ -38,11 +65,11 @@ class _PaymentPageState extends State<PaymentPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Payment"),
+        title: const Text("Payment"),
         leading: IconButton(
-          onPressed: (){},
-          // onPressed: () => _exitApp(context),
-          icon: Icon(Icons.arrow_back_ios_new),
+          // onPressed: () {},
+          onPressed: () => _exitApp(context),
+          icon: const Icon(Icons.arrow_back_ios_new),
         ),
         backgroundColor: AppColors.mainColor,
       ),
@@ -51,6 +78,7 @@ class _PaymentPageState extends State<PaymentPage> {
           width: Dimensions.screenWidth,
           child: Stack(
             children: [
+              WebViewWidget(controller: _controller),
               // WebView(
               //   javascriptMode: JavascriptMode.unrestricted,
               //   initialUrl: selectedUrl,
@@ -80,11 +108,11 @@ class _PaymentPageState extends State<PaymentPage> {
               //     _redirectUrl(url);
               //   },
               // ),
-              // _isLoading
-              //     ? Center(
-              //         child: CustomLoader(),
-              //       )
-              //     : SizedBox.shrink(),
+              _isLoading
+                  ? const Center(
+                      child: CustomLoader(),
+                    )
+                  : const SizedBox.shrink(),
             ],
           ),
         ),
@@ -105,12 +133,24 @@ class _PaymentPageState extends State<PaymentPage> {
         _canRedirect = false;
       }
       if (_isSuccess) {
-        // Get.offNamed(RouteHelper.getOrderSuccessRoute(widget.orderModel));
+        Get.offNamed(RouteHelper.getOrderSuccess(
+            widget.orderModel.id.toString(), "success"));
       } else if (_isFailed || _isCancel) {
-        // Get.offNamed(RouteHelper.getOrderSuccessRoute(widget.orderModel));
+        Get.offNamed(RouteHelper.getOrderSuccess(
+            widget.orderModel.id.toString(), "fail"));
       } else {
-        print("Payment fail");
+        print("Uncountered problem");
       }
+    }
+  }
+
+  Future<bool> _exitApp(BuildContext context) async {
+    if (await _controller.canGoBack()) {
+      _controller.goBack();
+      return Future.value(false);
+    } else {
+      print("App exited");
+      return Future.value(true);
     }
   }
 
@@ -121,6 +161,30 @@ class _PaymentPageState extends State<PaymentPage> {
   //   } else {
   //     print("app exited");
   //     return true;
+  //   }
+  // }
+
+  // void _redirectUrl(String url) {
+  //   print("Redirecting to $url");
+  //   if (_canRedirect) {
+  //     bool _isSuccess =
+  //         url.contains('success') && url.contains(AppConstants.APP_NAME);
+  //     bool _isFailed =
+  //         url.contains('fail') && url.contains(AppConstants.BASE_URL);
+  //     bool _isCancel =
+  //         url.contains('cancel') && url.contains(AppConstants.BASE_URL);
+  //     if (_isSuccess || _isFailed || _isCancel) {
+  //       _canRedirect = false;
+  //     }
+  //     if (_isSuccess) {
+  //       Get.offNamed(RouteHelper.getOrderSuccess(
+  //           widget.orderModel.id.toString(), "success"));
+  //     } else if (_isFailed || _isCancel) {
+  //       Get.offNamed(RouteHelper.getOrderSuccess(
+  //           widget.orderModel.id.toString(), "fail"));
+  //     } else {
+  //       print("Encountered a problem");
+  //     }
   //   }
   // }
 }

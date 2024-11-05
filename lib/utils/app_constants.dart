@@ -2,7 +2,7 @@ class AppConstants {
   static const String APP_NAME = "DBFood";
   static const int APP_VERSION = 1;
   static const String BASE_URL =
-      "http://192.168.1.41:8000"; // https://dbf.dbestech.com
+      "http://192.168.1.144:8000"; // https://dbf.dbestech.com
   static const String POPULAR_PRODUCT_URI = "/api/v1/products/popular";
   static const String RECOMMENDED_PRODUCT_URI = "/api/v1/products/recommended";
   static const String UPLOAD_URL = "/uploads";
@@ -25,4 +25,12 @@ class AppConstants {
   static const String REGISTER_URI = "/api/v1/auth/register";
   static const String LOGIN_URI = "/api/v1/auth/login";
   static const String USER_INFO = "/api/v1/customer/info";
+
+  // orders
+  static const String PLACE_ORDER_URI = "/api/v1/customer/order/place";
+  static const String ORDER_LIST_URI = "/api/v1/customer/order/list";
+
+  static const String TOKEN_URI = '/api/v1/customer/cm-firebase-token';
+  static const String GOOGLE_MAPS_API_KEY =
+      "AIzaSyD71GufN3o2zIBfHjTyUCkJiMvjsqrUgtM";
 }

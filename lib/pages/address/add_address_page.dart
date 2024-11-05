@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/utils/color.dart';
 import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/utils/dimensions.dart';
+import 'package:food_delivery/base/custom_app_bar.dart';
 import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/models/address_model.dart';
 import 'package:food_delivery/widgets/app_text_field.dart';
@@ -69,15 +70,13 @@ class _AddAddressPageState extends State<AddAddressPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Address"),
-      ),
+      appBar: const CustomAppBar(title: 'Address'),
       body: GetBuilder<UserController>(builder: (userController) {
         if (userController.accountModel != null &&
             _contactPersonNameController.text.isEmpty) {
-          _contactPersonNameController.text = userController.accountModel.name;
+          _contactPersonNameController.text = userController.accountModel!.name;
           _contactPersonNumberController.text =
-              userController.accountModel.phone;
+              userController.accountModel!.phone;
           if (Get.find<LocationController>().addressList.isNotEmpty) {
             _addressController.text =
                 Get.find<LocationController>().getUserAddress().address;

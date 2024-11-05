@@ -189,9 +189,11 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                         height: Dimensions.height10,
                                       ),
                                       SmallText(
-                                          text: recommendedProduct
-                                              .recommendedProductList[index]
-                                              .description),
+                                        text: recommendedProduct
+                                            .recommendedProductList[index]
+                                            .description,
+                                        maxLines: true,
+                                      ),
                                       SizedBox(
                                         height: Dimensions.height10,
                                       ),

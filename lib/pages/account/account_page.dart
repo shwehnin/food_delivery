@@ -5,6 +5,7 @@ import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/app_icon.dart';
 import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/base/custom_loader.dart';
+import 'package:food_delivery/base/custom_app_bar.dart';
 import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/widgets/account_widget.dart';
 import 'package:food_delivery/controllers/user_controller.dart';
@@ -20,17 +21,11 @@ class AccountPage extends StatelessWidget {
     bool _userLoggedIn = Get.find<AuthController>().userLoggedIn();
     if (_userLoggedIn) {
       Get.find<UserController>().getUserInfo();
+      Get.find<LocationController>().getAddressList();
       print("User has logged in");
     }
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.mainColor,
-        title: BigText(
-          text: "Profile",
-          size: 24,
-          color: Colors.white,
-        ),
-      ),
+      appBar: const CustomAppBar(title: "Profile"),
       body: GetBuilder<UserController>(builder: (userController) {
         return _userLoggedIn
             ? (userController.isLoading
@@ -57,7 +52,7 @@ class AccountPage extends StatelessWidget {
                               // name
                               AccountWidget(
                                 text: BigText(
-                                    text: userController.accountModel.name),
+                                    text: userController.accountModel!.name),
                                 appIcon: AppIcon(
                                   icon: Icons.person,
                                   backgroundColor: AppColors.mainColor,
@@ -72,7 +67,7 @@ class AccountPage extends StatelessWidget {
                               // phone
                               AccountWidget(
                                 text: BigText(
-                                    text: userController.accountModel.phone),
+                                    text: userController.accountModel!.phone),
                                 appIcon: AppIcon(
                                   icon: Icons.phone,
                                   backgroundColor: AppColors.yellowColor,
@@ -87,7 +82,7 @@ class AccountPage extends StatelessWidget {
                               // email
                               AccountWidget(
                                 text: BigText(
-                                    text: userController.accountModel.email),
+                                    text: userController.accountModel!.email),
                                 appIcon: AppIcon(
                                   icon: Icons.email,
                                   backgroundColor: AppColors.yellowColor,

@@ -5,6 +5,7 @@ class SmallText extends StatelessWidget {
   Color? color;
   double size;
   double height;
+  bool maxLines;
 
   SmallText({
     super.key,
@@ -12,6 +13,7 @@ class SmallText extends StatelessWidget {
     this.color = const Color(0xFFccc7c5),
     this.size = 12,
     this.height = 1.2,
+    this.maxLines = false,
   });
 
   @override
@@ -23,6 +25,8 @@ class SmallText extends StatelessWidget {
         fontSize: size,
         height: height,
       ),
+      maxLines: maxLines ? 2 : 1,
+      overflow: maxLines ? TextOverflow.ellipsis : null,
     );
   }
 }

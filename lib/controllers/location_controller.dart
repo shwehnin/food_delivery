@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:google_maps_webservice/src/places.dart';
 import 'package:food_delivery/data/api/api_checker.dart';
 import 'package:food_delivery/models/address_model.dart';
 import 'package:food_delivery/models/response_model.dart';
@@ -58,7 +57,7 @@ class LocationController extends GetxController implements GetxService {
   bool _buttonDisable = true;
   bool get buttonDisable => _buttonDisable;
 
-  List<Prediction> _predictionList = [];
+  List<dynamic> _predictionList = [];
 
   Future<void> getCurrentLocation(bool fromAddress,
       {required GoogleMapController mapController,
@@ -262,55 +261,55 @@ class LocationController extends GetxController implements GetxService {
     return _responseModel;
   }
 
-  Future<List<Prediction>> searchLocation(
-      BuildContext context, String text) async {
-    if (text.isNotEmpty) {
-      Response response = await locationRepo.searchLocation(text);
-      if (response.statusCode == 200 && response.body["status"] == "OK") {
-        _predictionList = [];
-        response.body["predictions"].forEach(
-          (prediction) => _predictionList.add(Prediction.fromJson(prediction)),
-        );
-      } else {
-        ApiChecker.checkApi(response);
-      }
-    }
-    return _predictionList;
-  }
+  // Future<List<dynamic>> searchLocation(
+  //     BuildContext context, String text) async {
+  //   if (text.isNotEmpty) {
+  //     Response response = await locationRepo.searchLocation(text);
+  //     if (response.statusCode == 200 && response.body["status"] == "OK") {
+  //       _predictionList = [];
+  //       response.body["predictions"].forEach(
+  //         (prediction) => _predictionList.add(Prediction.fromJson(prediction)),
+  //       );
+  //     } else {
+  //       ApiChecker.checkApi(response);
+  //     }
+  //   }
+  //   return _predictionList;
+  // }
 
-  setLocation(
-      String placeId, String address, GoogleMapController mapController) async {
-    _loading = true;
-    update();
-    PlacesDetailsResponse detail;
-    Response response = await locationRepo.setLocation(placeId);
-    detail = PlacesDetailsResponse.fromJson(response.body);
-    _pickPosition = Position(
-      longitude: detail.result.geometry!.location.lng,
-      latitude: detail.result.geometry!.location.lat,
-      timestamp: DateTime.now(),
-      accuracy: 1,
-      altitude: 1,
-      altitudeAccuracy: 1,
-      heading: 1,
-      headingAccuracy: 1,
-      speed: 1,
-      speedAccuracy: 1,
-    );
-    _pickPlacemark = Placemark(name: address);
-    _changeAddress = false;
-    if (!mapController.isNull) {
-      mapController.animateCamera(CameraUpdate.newCameraPosition(
-        CameraPosition(
-          target: LatLng(
-            detail.result.geometry!.location.lat,
-            detail.result.geometry!.location.lng,
-          ),
-          zoom: 17,
-        ),
-      ));
-    }
-    _loading = false;
-    update();
-  }
+  // setLocation(
+  //     String placeId, String address, GoogleMapController mapController) async {
+  //   _loading = true;
+  //   update();
+  //   PlacesDetailsResponse detail;
+  //   Response response = await locationRepo.setLocation(placeId);
+  //   detail = PlacesDetailsResponse.fromJson(response.body);
+  //   _pickPosition = Position(
+  //     longitude: detail.result.geometry!.location.lng,
+  //     latitude: detail.result.geometry!.location.lat,
+  //     timestamp: DateTime.now(),
+  //     accuracy: 1,
+  //     altitude: 1,
+  //     altitudeAccuracy: 1,
+  //     heading: 1,
+  //     headingAccuracy: 1,
+  //     speed: 1,
+  //     speedAccuracy: 1,
+  //   );
+  //   _pickPlacemark = Placemark(name: address);
+  //   _changeAddress = false;
+  //   if (!mapController.isNull) {
+  //     mapController.animateCamera(CameraUpdate.newCameraPosition(
+  //       CameraPosition(
+  //         target: LatLng(
+  //           detail.result.geometry!.location.lat,
+  //           detail.result.geometry!.location.lng,
+  //         ),
+  //         zoom: 17,
+  //       ),
+  //     ));
+  //   }
+  //   _loading = false;
+  //   update();
+  // }
 }
