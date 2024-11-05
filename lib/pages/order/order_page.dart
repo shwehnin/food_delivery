@@ -31,7 +31,9 @@ class _OrderPageState extends State<OrderPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: "My Orders"),
+      appBar: const CustomAppBar(
+        title: "My Orders",
+      ),
       body: Column(
         children: [
           Container(

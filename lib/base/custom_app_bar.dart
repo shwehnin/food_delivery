@@ -27,12 +27,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               onPressed: () => onBackPressed != null
                   ? onBackPressed!()
                   : Navigator.pushReplacementNamed(context, "/initial"),
-              icon: Icon(Icons.arrow_back_ios_new),
+              icon: const Icon(
+                Icons.arrow_back_ios_new,
+                color: Colors.white,
+              ),
             )
-          : SizedBox(),
+          : const SizedBox(),
     );
   }
 
   @override
-  Size get preferredSize => Size(500, 55);
+  Size get preferredSize => const Size(500, 55);
 }

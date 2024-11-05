@@ -73,8 +73,11 @@ class _PickAddressMapState extends State<PickAddressMap> {
                 ),
                 Center(
                   child: !locationController.loading
-                      ? Image.asset("assets/images/piza.jpg",
-                          height: 50, width: 50)
+                      ? Icon(
+                          Icons.location_on,
+                          size: 60,
+                          color: AppColors.mainColor,
+                        )
                       : const CustomLoader(),
                 ),
                 // showing and selecting address
