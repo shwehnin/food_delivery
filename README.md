@@ -65,7 +65,7 @@ Feel free to contribute to this project by submitting a pull request.
 
 ## Screenshots
 
-![Register](https://github.com/shwehnin/food_delivery/blob/master/assets/images/register.png)
+![Register](https://github.com/shwehnin/food_delivery/blob/master/assets/images/reigster.png)
 
 ![Login](https://github.com/shwehnin/food_delivery/blob/master/assets/images/login.png)
 
