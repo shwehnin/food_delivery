@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/utils/color.dart';
-import 'package:food_delivery/utils/dimensions.dart';
-import 'package:food_delivery/widgets/big_text.dart';
-import 'package:food_delivery/widgets/small_text.dart';
+import 'package:foody/utils/color.dart';
+import 'package:foody/utils/dimensions.dart';
+import 'package:foody/widgets/big_text.dart';
+import 'package:foody/widgets/small_text.dart';
+import 'package:foody/pages/home/food_page_body.dart';
 import '../../controllers/popular_product_controller.dart';
-import 'package:food_delivery/pages/home/food_page_body.dart';
 import '../../controllers/recommended_product_controller.dart';
 
 class MainFoodPage extends StatefulWidget {

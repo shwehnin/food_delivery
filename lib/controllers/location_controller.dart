@@ -1,13 +1,11 @@
 import 'dart:convert';
 import 'package:get/get.dart';
-import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:food_delivery/data/api/api_checker.dart';
-import 'package:food_delivery/models/address_model.dart';
-import 'package:food_delivery/models/response_model.dart';
+import 'package:foody/models/address_model.dart';
+import 'package:foody/models/response_model.dart';
+import 'package:foody/data/repository/location_repo.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:food_delivery/data/repository/location_repo.dart';
 
 class LocationController extends GetxController implements GetxService {
   final LocationRepo locationRepo;
@@ -39,9 +37,6 @@ class LocationController extends GetxController implements GetxService {
 
   int _addressTypeIndex = 0;
   int get addressTypeIndex => _addressTypeIndex;
-
-  late Map<String, dynamic> _getAddress;
-  Map get getAddress => _getAddress;
 
   late GoogleMapController _mapController;
   GoogleMapController get mapController => _mapController;
@@ -144,8 +139,11 @@ class LocationController extends GetxController implements GetxService {
   Future<String> getAddressFromGeocode(LatLng latLng) async {
     String _address = "Unknown location found";
     Response response = await locationRepo.getAddressFromGeocode(latLng);
+    print("Location Response ${response.body}");
     if (response.body["status"] == "OK") {
+      print("Location status ${response.body["status"]}");
       _address = response.body["results"][0]["formatted_address"].toString();
+
       print("Printing address $_address");
     } else {
       print("Error getting the google api");
@@ -154,8 +152,12 @@ class LocationController extends GetxController implements GetxService {
     return _address;
   }
 
+  late Map<String, dynamic> _getAddress;
+  Map get getAddress => _getAddress;
+
   AddressModel getUserAddress() {
     late AddressModel _addressModel;
+    // converting to map using jsonDecode
     _getAddress = jsonDecode(locationRepo.getUserAddress());
     try {
       _addressModel =
@@ -258,6 +260,7 @@ class LocationController extends GetxController implements GetxService {
       _isLoading = false;
     }
     update();
+    print("Zone Status Code ${response.statusCode}");
     return _responseModel;
   }
 

@@ -1,13 +1,13 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/utils/color.dart';
-import 'package:food_delivery/utils/dimensions.dart';
-import 'package:food_delivery/base/custom_button.dart';
-import 'package:food_delivery/base/custom_loader.dart';
-import 'package:food_delivery/routes/route_helper.dart';
+import 'package:foody/utils/color.dart';
+import 'package:foody/utils/dimensions.dart';
+import 'package:foody/base/custom_button.dart';
+import 'package:foody/base/custom_loader.dart';
+import 'package:foody/routes/route_helper.dart';
+import 'package:foody/controllers/location_controller.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:food_delivery/controllers/location_controller.dart';
-import 'package:food_delivery/pages/address/widgets/search_location_dialog.dart';
+import 'package:foody/pages/address/widgets/search_location_dialog.dart';
 
 class PickAddressMap extends StatefulWidget {
   final bool fromSignup;
@@ -118,11 +118,11 @@ class _PickAddressMapState extends State<PickAddressMap> {
                           ),
                           SizedBox(
                             width: Dimensions.width10,
-                            child: Icon(
-                              Icons.search,
-                              size: 25,
-                              color: AppColors.yellowColor,
-                            ),
+                          ),
+                          Icon(
+                            Icons.search,
+                            size: 25,
+                            color: AppColors.yellowColor,
                           )
                         ],
                       ),
@@ -136,6 +136,7 @@ class _PickAddressMapState extends State<PickAddressMap> {
                   child: locationController.isLoading
                       ? const CustomLoader()
                       : CustomButton(
+                          // buttonText: 'Pick Address',
                           buttonText: locationController.inZone
                               ? widget.fromAddress
                                   ? "Pick Address"

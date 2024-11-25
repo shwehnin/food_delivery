@@ -1,15 +1,15 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/utils/color.dart';
-import 'package:food_delivery/utils/dimensions.dart';
-import 'package:food_delivery/widgets/app_icon.dart';
-import 'package:food_delivery/widgets/big_text.dart';
-import 'package:food_delivery/utils/app_constants.dart';
-import 'package:food_delivery/routes/route_helper.dart';
-import 'package:food_delivery/widgets/expandable_widget.dart';
-import 'package:food_delivery/controllers/cart_controller.dart';
-import 'package:food_delivery/controllers/popular_product_controller.dart';
-import 'package:food_delivery/controllers/recommended_product_controller.dart';
+import 'package:foody/utils/color.dart';
+import 'package:foody/utils/dimensions.dart';
+import 'package:foody/widgets/app_icon.dart';
+import 'package:foody/widgets/big_text.dart';
+import 'package:foody/utils/app_constants.dart';
+import 'package:foody/routes/route_helper.dart';
+import 'package:foody/widgets/expandable_widget.dart';
+import 'package:foody/controllers/cart_controller.dart';
+import 'package:foody/controllers/popular_product_controller.dart';
+import 'package:foody/controllers/recommended_product_controller.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
   final int pageId;
@@ -124,7 +124,7 @@ class RecommendedFoodDetail extends StatelessWidget {
               Container(
                 margin: EdgeInsets.only(
                     left: Dimensions.width20, right: Dimensions.width20),
-                child: ExpandableWidget(text: product.description),
+                child: ExpandableWidget(text: product.description!),
               )
             ],
           ))

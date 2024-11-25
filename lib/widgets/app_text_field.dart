@@ -1,11 +1,14 @@
 import '../utils/color.dart';
+import 'package:get/get.dart';
 import '../utils/dimensions.dart';
 import 'package:flutter/material.dart';
+import 'package:foody/controllers/auth_controller.dart';
 
 class AppTextField extends StatelessWidget {
   final TextEditingController textController;
   final String hintText;
   final IconData icon;
+  final IconData? suffixIcon;
   bool isObscure;
   bool maxLines;
   AppTextField({
@@ -15,6 +18,7 @@ class AppTextField extends StatelessWidget {
     required this.icon,
     this.isObscure = false,
     this.maxLines = false,
+    this.suffixIcon,
   });
 
   @override
@@ -34,7 +38,7 @@ class AppTextField extends StatelessWidget {
             )
           ]),
       child: TextField(
-        maxLines: maxLines ? 3 : 1,
+        maxLines: maxLines ? null : 1,
         obscureText: isObscure ? true : false,
         controller: textController,
         decoration: InputDecoration(
@@ -42,6 +46,17 @@ class AppTextField extends StatelessWidget {
           prefixIcon: Icon(
             icon,
             color: AppColors.yellowColor,
+          ),
+          suffixIcon: GetBuilder<AuthController>(
+            builder: (controller) => GestureDetector(
+              onTap: () {
+                controller.toggleShowPassword();
+              },
+              child: Icon(
+                suffixIcon,
+                color: AppColors.yellowColor,
+              ),
+            ),
           ),
           // focused border
           focusedBorder: OutlineInputBorder(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/utils/dimensions.dart';
+import 'package:foody/utils/dimensions.dart';
 
 class CustomButton extends StatelessWidget {
   final VoidCallback? onPressed;
@@ -65,7 +65,7 @@ class CustomButton extends StatelessWidget {
               Text(
                 buttonText,
                 style: TextStyle(
-                  fontSize: fontSize != null ? fontSize : Dimensions.font16,
+                  fontSize: fontSize ?? Dimensions.font16,
                   color: transparent
                       ? Theme.of(context).primaryColor
                       : Theme.of(context).cardColor,

@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:food_delivery/data/api/api_client.dart';
-import 'package:food_delivery/utils/app_constants.dart';
-import 'package:food_delivery/models/place_order_model.dart';
+import 'package:foody/data/api/api_client.dart';
+import 'package:foody/utils/app_constants.dart';
+import 'package:foody/models/place_order_model.dart';
 
 class OrderRepo {
   final ApiClient apiClient;

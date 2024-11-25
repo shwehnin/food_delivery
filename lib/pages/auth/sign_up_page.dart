@@ -1,15 +1,16 @@
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/utils/color.dart';
-import 'package:food_delivery/utils/dimensions.dart';
-import 'package:food_delivery/widgets/big_text.dart';
-import 'package:food_delivery/models/user_model.dart';
-import 'package:food_delivery/base/custom_loader.dart';
-import 'package:food_delivery/routes/route_helper.dart';
-import 'package:food_delivery/widgets/app_text_field.dart';
-import 'package:food_delivery/base/show_custom_snackbar.dart';
-import 'package:food_delivery/controllers/auth_controller.dart';
+import 'package:foody/utils/color.dart';
+import 'package:foody/utils/dimensions.dart';
+import 'package:foody/widgets/big_text.dart';
+import 'package:foody/models/user_model.dart';
+import 'package:foody/base/custom_loader.dart';
+import 'package:foody/routes/route_helper.dart';
+import 'package:foody/widgets/app_text_field.dart';
+import 'package:foody/base/show_custom_snackbar.dart';
+import 'package:foody/controllers/auth_controller.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
@@ -20,7 +21,7 @@ class SignUpPage extends StatelessWidget {
     var phoneController = TextEditingController();
     var passwordController = TextEditingController();
     var nameController = TextEditingController();
-    List<String> imgs = ["piza.jpg", "pasta.jpg", "pancake.jpeg"];
+    List<String> imgs = ["f.png", "g.png", "t.png"];
 
     void _registration(AuthController authController) {
       String name = nameController.text.trim();
@@ -70,16 +71,22 @@ class SignUpPage extends StatelessWidget {
                       height: Dimensions.screenHeight * .05,
                     ),
                     // app logo
+                    // Container(
+                    //   height: Dimensions.screenHeight * 0.25,
+                    //   child: const Center(
+                    //     child: CircleAvatar(
+                    //       backgroundColor: Colors.white,
+                    //       radius: 80,
+                    //       backgroundImage:
+                    //           AssetImage('assets/images/fish.jpeg'),
+                    //     ),
+                    //   ),
+                    // ),
                     Container(
-                      height: Dimensions.screenHeight * 0.25,
-                      child: const Center(
-                        child: CircleAvatar(
-                          backgroundColor: Colors.white,
-                          radius: 80,
-                          backgroundImage:
-                              AssetImage('assets/images/fish.jpeg'),
-                        ),
-                      ),
+                        height: Dimensions.screenHeight * 0.25,
+                        child: Lottie.asset("assets/json/login.json")),
+                    SizedBox(
+                      height: Dimensions.height10,
                     ),
                     // your email
                     AppTextField(
@@ -92,10 +99,12 @@ class SignUpPage extends StatelessWidget {
                     ),
                     // your password
                     AppTextField(
-                      isObscure: true,
+                      suffixIcon:_authController.showPassword ? Icons.visibility : Icons.visibility_off,
+                      isObscure: !_authController.showPassword,
                       textController: passwordController,
                       hintText: 'Password',
                       icon: Icons.password,
+                      
                     ),
                     SizedBox(
                       height: Dimensions.height20,
@@ -173,10 +182,18 @@ class SignUpPage extends StatelessWidget {
                       spacing: Dimensions.width10,
                       children: List.generate(
                         3,
-                        (index) => CircleAvatar(
-                          radius: Dimensions.radius30,
-                          backgroundImage:
-                              AssetImage("assets/images/${imgs[index]}"),
+                        (index) => Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            border: Border.all(color: Colors.grey, width: 2),
+                          ),
+                          child: CircleAvatar(
+                            radius: Dimensions.radius30,
+                            backgroundImage:
+                                AssetImage("assets/images/${imgs[index]}"),
+                          ),
                         ),
                       ),
                     )

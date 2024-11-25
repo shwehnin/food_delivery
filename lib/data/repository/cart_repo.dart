@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:food_delivery/models/cart_model.dart';
-import 'package:food_delivery/utils/app_constants.dart';
+import 'package:foody/models/cart_model.dart';
+import 'package:foody/utils/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CartRepo {

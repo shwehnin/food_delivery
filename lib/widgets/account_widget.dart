@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/utils/dimensions.dart';
-import 'package:food_delivery/widgets/app_icon.dart';
-import 'package:food_delivery/widgets/big_text.dart';
+import 'package:foody/utils/dimensions.dart';
+import 'package:foody/widgets/app_icon.dart';
+import 'package:foody/widgets/big_text.dart';
 
 class AccountWidget extends StatelessWidget {
   final BigText text;

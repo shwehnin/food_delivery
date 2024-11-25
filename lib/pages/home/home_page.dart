@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/utils/color.dart';
-import 'package:food_delivery/pages/order/order_page.dart';
-import 'package:food_delivery/pages/auth/sign_up_page.dart';
-import 'package:food_delivery/pages/home/main_food_page.dart';
-import 'package:food_delivery/pages/account/account_page.dart';
-import 'package:food_delivery/pages/cart/cart_history_page.dart';
+import 'package:foody/utils/color.dart';
+import 'package:foody/pages/order/order_page.dart';
+import 'package:foody/pages/auth/sign_up_page.dart';
+import 'package:foody/pages/home/main_food_page.dart';
+import 'package:foody/pages/account/account_page.dart';
+import 'package:foody/pages/cart/cart_history_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

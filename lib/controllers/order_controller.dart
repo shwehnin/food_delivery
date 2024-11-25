@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:food_delivery/models/order_model.dart';
-import 'package:food_delivery/models/place_order_model.dart';
-import 'package:food_delivery/data/repository/order_repo.dart';
+import 'package:foody/models/order_model.dart';
+import 'package:foody/models/place_order_model.dart';
+import 'package:foody/data/repository/order_repo.dart';
 
 class OrderController extends GetxController implements GetxService {
   OrderRepo orderRepo;
@@ -12,9 +12,9 @@ class OrderController extends GetxController implements GetxService {
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;
-  late List<OrderModel> _currentOrderList;
+  late List<OrderModel> _currentOrderList = [];
   List<OrderModel> get currentOrderList => _currentOrderList;
-  late List<OrderModel> _historyOrderList;
+  late List<OrderModel> _historyOrderList = [];
   List<OrderModel> get runningOrderList => _historyOrderList;
 
   int _paymentIndex = 0;

@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:food_delivery/models/user_model.dart';
-import 'package:food_delivery/data/api/api_client.dart';
-import 'package:food_delivery/utils/app_constants.dart';
+import 'package:foody/models/user_model.dart';
+import 'package:foody/data/api/api_client.dart';
+import 'package:foody/utils/app_constants.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -97,7 +97,7 @@ class AuthRepo {
         _deviceToken = await FirebaseMessaging.instance.getToken();
       } catch (e) {
         print("could not get the token");
-        print(e.toString());
+        print("Save Device Token Error $e");
       }
     }
     if (_deviceToken != null) {

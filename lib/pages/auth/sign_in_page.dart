@@ -1,15 +1,16 @@
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/utils/color.dart';
-import 'package:food_delivery/utils/dimensions.dart';
-import 'package:food_delivery/widgets/big_text.dart';
-import 'package:food_delivery/base/custom_loader.dart';
-import 'package:food_delivery/routes/route_helper.dart';
-import 'package:food_delivery/widgets/app_text_field.dart';
-import 'package:food_delivery/pages/auth/sign_up_page.dart';
-import 'package:food_delivery/base/show_custom_snackbar.dart';
-import 'package:food_delivery/controllers/auth_controller.dart';
+import 'package:foody/utils/color.dart';
+import 'package:foody/utils/dimensions.dart';
+import 'package:foody/widgets/big_text.dart';
+import 'package:foody/base/custom_loader.dart';
+import 'package:foody/routes/route_helper.dart';
+import 'package:foody/widgets/app_text_field.dart';
+import 'package:foody/pages/auth/sign_up_page.dart';
+import 'package:foody/base/show_custom_snackbar.dart';
+import 'package:foody/controllers/auth_controller.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({super.key});
@@ -52,20 +53,24 @@ class SignInPage extends StatelessWidget {
                       height: Dimensions.screenHeight * .05,
                     ),
                     // app logo
+                    // Container(
+                    //   height: Dimensions.screenHeight * 0.25,
+                    //   child: const Center(
+                    //     child: CircleAvatar(
+                    //       backgroundColor: Colors.white,
+                    //       radius: 80,
+                    //       backgroundImage:
+                    //           AssetImage('assets/images/fish.jpeg'),
+                    //     ),
+                    //   ),
+                    // ),
                     Container(
-                      height: Dimensions.screenHeight * 0.25,
-                      child: const Center(
-                        child: CircleAvatar(
-                          backgroundColor: Colors.white,
-                          radius: 80,
-                          backgroundImage:
-                              AssetImage('assets/images/fish.jpeg'),
-                        ),
-                      ),
-                    ),
+                        height: Dimensions.screenHeight * 0.25,
+                        child: Lottie.asset("assets/json/login.json")),
                     // welcome
                     Container(
-                      margin: EdgeInsets.only(left: Dimensions.width20),
+                      margin: EdgeInsets.only(
+                          left: Dimensions.width20, top: Dimensions.height20),
                       width: double.maxFinite,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,10 +108,13 @@ class SignInPage extends StatelessWidget {
 
                     // your password
                     AppTextField(
-                      isObscure: true,
+                      isObscure: !authController.showPassword,
                       textController: passwordController,
                       hintText: 'Password',
                       icon: Icons.password,
+                      suffixIcon: authController.showPassword
+                          ? Icons.visibility
+                          : Icons.visibility_off,
                     ),
 
                     SizedBox(

@@ -1,4 +1,4 @@
-package com.hninhninwai.xyz.food_delivery
+package xyz.hninhninwai.foody
 
 import io.flutter.embedding.android.FlutterActivity
 

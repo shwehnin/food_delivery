@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/utils/dimensions.dart';
-import 'package:food_delivery/widgets/small_text.dart';
+import 'package:foody/utils/dimensions.dart';
+import 'package:foody/widgets/small_text.dart';
 
 class IconTextWidget extends StatelessWidget {
   final String text;

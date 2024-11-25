@@ -2,16 +2,16 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/utils/color.dart';
-import 'package:food_delivery/utils/dimensions.dart';
-import 'package:food_delivery/widgets/app_icon.dart';
-import 'package:food_delivery/widgets/big_text.dart';
-import 'package:food_delivery/base/no_data_page.dart';
-import 'package:food_delivery/models/cart_model.dart';
-import 'package:food_delivery/widgets/small_text.dart';
-import 'package:food_delivery/routes/route_helper.dart';
-import 'package:food_delivery/utils/app_constants.dart';
-import 'package:food_delivery/controllers/cart_controller.dart';
+import 'package:foody/utils/color.dart';
+import 'package:foody/utils/dimensions.dart';
+import 'package:foody/widgets/app_icon.dart';
+import 'package:foody/widgets/big_text.dart';
+import 'package:foody/base/no_data_page.dart';
+import 'package:foody/models/cart_model.dart';
+import 'package:foody/widgets/small_text.dart';
+import 'package:foody/routes/route_helper.dart';
+import 'package:foody/utils/app_constants.dart';
+import 'package:foody/controllers/cart_controller.dart';
 
 class CartHistoryPage extends StatelessWidget {
   const CartHistoryPage({super.key});

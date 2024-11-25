@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:get/get.dart';
 import 'package:flutter/foundation.dart';
+import 'package:foody/controllers/auth_controller.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:food_delivery/controllers/auth_controller.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class NotificationHelper {
@@ -31,7 +31,7 @@ class NotificationHelper {
         }
       } catch (e) {
         if (kDebugMode) {
-          print(e);
+          print("Notification Error $e");
         }
       }
       return;
@@ -57,10 +57,14 @@ class NotificationHelper {
       print(
           "onOpenApp: ${message.notification?.title}/ ${message.notification?.body}/ ${message.notification?.titleLocKey}");
       try {
-        if (message.notification?.titleLocKey != null) {
-        } else {}
+        if (message.notification?.titleLocKey != null &&
+            message.notification?.titleLocKey != null) {
+          // Get.toNamed(RouteHelper.getOrderDetailsRoute(int.parse(message.notification!.titleLocKey!)))
+        } else {
+          // Get.toNamed(RouteHelper.getNotificationRoute());
+        }
       } catch (e) {
-        print(e.toString());
+        print("On Open Notification Error $e");
       }
     });
   }

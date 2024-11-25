@@ -1,10 +1,11 @@
+import 'small_text.dart';
+import '../utils/color.dart';
+import '../utils/dimensions.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/utils/color.dart';
-import 'package:food_delivery/utils/dimensions.dart';
-import 'package:food_delivery/widgets/small_text.dart';
 
 class ExpandableWidget extends StatefulWidget {
   final String text;
+
   const ExpandableWidget({super.key, required this.text});
 
   @override
@@ -14,18 +15,17 @@ class ExpandableWidget extends StatefulWidget {
 class _ExpandableWidgetState extends State<ExpandableWidget> {
   late String firstHalf;
   late String secondHalf;
-
   bool hiddenText = true;
 
-  double textHeight = Dimensions.screenHeight / 5.63;
+  final double textLimit = Dimensions.screenHeight / 5.63;
 
   @override
   void initState() {
     super.initState();
-    if (widget.text.length > textHeight) {
-      firstHalf = widget.text.substring(0, textHeight.toInt());
+    if (widget.text.length > textLimit) {
+      firstHalf = widget.text.substring(0, textLimit.toInt());
       secondHalf =
-          widget.text.substring(textHeight.toInt() + 1, widget.text.length);
+          widget.text.substring(textLimit.toInt() + 1, widget.text.length);
     } else {
       firstHalf = widget.text;
       secondHalf = "";
@@ -41,13 +41,12 @@ class _ExpandableWidgetState extends State<ExpandableWidget> {
               size: Dimensions.font16,
             )
           : Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SmallText(
-                  text:
-                      hiddenText ? ("$firstHalf...") : (firstHalf + secondHalf),
-                  size: Dimensions.font16,
-                  color: AppColors.paraColor,
-                  height: 1.8,
+                Text(
+                  hiddenText ? "$firstHalf..." : (firstHalf + secondHalf),
+                  style: TextStyle(
+                      fontSize: 16, height: 1.8, color: Colors.grey[800]),
                 ),
                 InkWell(
                   onTap: () {
@@ -66,7 +65,7 @@ class _ExpandableWidgetState extends State<ExpandableWidget> {
                             ? Icons.arrow_drop_down
                             : Icons.arrow_drop_up,
                         color: AppColors.mainColor,
-                      )
+                      ),
                     ],
                   ),
                 )

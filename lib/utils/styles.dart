@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/utils/dimensions.dart';
+import 'package:foody/utils/dimensions.dart';
 
 final robotoRegular = TextStyle(
   fontFamily: 'Roboto',

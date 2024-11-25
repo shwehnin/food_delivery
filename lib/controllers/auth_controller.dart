@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:food_delivery/models/user_model.dart';
-import 'package:food_delivery/models/response_model.dart';
-import 'package:food_delivery/data/repository/auth_repo.dart';
+import 'package:foody/models/user_model.dart';
+import 'package:foody/models/response_model.dart';
+import 'package:foody/data/repository/auth_repo.dart';
 
 class AuthController extends GetxController implements GetxService {
   final AuthRepo authRepo;
@@ -9,6 +9,14 @@ class AuthController extends GetxController implements GetxService {
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;
+
+  bool _showPassword = false;
+  bool get showPassword => _showPassword;
+
+  void toggleShowPassword() {
+    _showPassword =!_showPassword;
+    update();
+  }
 
   Future<ResponseModel> registration(UserModel user) async {
     _isLoading = true;

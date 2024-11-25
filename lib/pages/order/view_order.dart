@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/utils/color.dart';
-import 'package:food_delivery/utils/styles.dart';
-import 'package:food_delivery/utils/dimensions.dart';
-import 'package:food_delivery/base/custom_loader.dart';
-import 'package:food_delivery/models/order_model.dart';
-import 'package:food_delivery/controllers/order_controller.dart';
+import 'package:foody/utils/color.dart';
+import 'package:foody/utils/styles.dart';
+import 'package:foody/utils/dimensions.dart';
+import 'package:foody/base/custom_loader.dart';
+import 'package:foody/models/order_model.dart';
+import 'package:foody/controllers/order_controller.dart';
 
 class ViewOrder extends StatelessWidget {
   final bool isCurrent;
@@ -17,11 +17,15 @@ class ViewOrder extends StatelessWidget {
       body: GetBuilder<OrderController>(
         builder: (orderController) {
           if (orderController.isLoading == false) {
-            late List<OrderModel> orderList;
+            List<OrderModel> orderList = [];
             if (orderController.currentOrderList.isNotEmpty) {
               orderList = isCurrent
                   ? orderController.currentOrderList.reversed.toList()
                   : orderController.runningOrderList.reversed.toList();
+            } else {
+              return const Center(
+                child: Text("Your order is not here."),
+              );
             }
             return SizedBox(
               width: Dimensions.screenWidth,

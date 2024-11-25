@@ -1,6 +1,6 @@
 {
-    "name": "food_delivery",
-    "short_name": "food_delivery",
+    "name": "foody",
+    "short_name": "foody",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

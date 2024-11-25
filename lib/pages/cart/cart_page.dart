@@ -1,27 +1,26 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/utils/color.dart';
-import 'package:food_delivery/utils/styles.dart';
+import 'package:foody/utils/color.dart';
+import 'package:foody/utils/styles.dart';
+import 'package:foody/utils/dimensions.dart';
+import 'package:foody/widgets/app_icon.dart';
+import 'package:foody/widgets/big_text.dart';
+import 'package:foody/base/no_data_page.dart';
+import 'package:foody/widgets/small_text.dart';
+import 'package:foody/routes/route_helper.dart';
+import 'package:foody/utils/app_constants.dart';
+import 'package:foody/widgets/app_text_field.dart';
 import '../../controllers/location_controller.dart';
-import 'package:food_delivery/utils/dimensions.dart';
-import 'package:food_delivery/widgets/app_icon.dart';
-import 'package:food_delivery/widgets/big_text.dart';
-import 'package:food_delivery/base/no_data_page.dart';
-import 'package:food_delivery/widgets/small_text.dart';
-import 'package:food_delivery/routes/route_helper.dart';
-import 'package:food_delivery/utils/app_constants.dart';
-import 'package:food_delivery/widgets/app_text_field.dart';
-import 'package:food_delivery/base/common_text_button.dart';
-import 'package:food_delivery/models/place_order_model.dart';
-import 'package:food_delivery/base/show_custom_snackbar.dart';
-import 'package:food_delivery/controllers/user_controller.dart';
-import 'package:food_delivery/controllers/auth_controller.dart';
-import 'package:food_delivery/controllers/cart_controller.dart';
-import 'package:food_delivery/controllers/order_controller.dart';
-import 'package:food_delivery/pages/payment/delivery_options.dart';
-import 'package:food_delivery/pages/payment/payment_option_button.dart';
-import 'package:food_delivery/controllers/popular_product_controller.dart';
-import 'package:food_delivery/controllers/recommended_product_controller.dart';
+import 'package:foody/base/common_text_button.dart';
+import 'package:foody/base/show_custom_snackbar.dart';
+import 'package:foody/controllers/user_controller.dart';
+import 'package:foody/controllers/auth_controller.dart';
+import 'package:foody/controllers/cart_controller.dart';
+import 'package:foody/controllers/order_controller.dart';
+import 'package:foody/pages/payment/delivery_options.dart';
+import 'package:foody/pages/payment/payment_option_button.dart';
+import 'package:foody/controllers/popular_product_controller.dart';
+import 'package:foody/controllers/recommended_product_controller.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
@@ -277,114 +276,109 @@ class CartPage extends StatelessWidget {
                     children: [
                       InkWell(
                         onTap: () => showModalBottomSheet(
+                                isScrollControlled: true,
                                 backgroundColor: Colors.transparent,
                                 context: context,
                                 builder: (_) {
-                                  return Column(
-                                    children: [
-                                      Expanded(
-                                        child: SingleChildScrollView(
-                                          child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
+                                  return DraggableScrollableSheet(
+                                    expand: false,
+                                    builder: (_, scrollController) =>
+                                        SingleChildScrollView(
+                                      controller: scrollController,
+                                      child: Container(
+                                        height:
+                                            MediaQuery.of(context).size.height *
                                                 .9,
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(
-                                                    Dimensions.radius20),
-                                                topRight: Radius.circular(
-                                                    Dimensions.radius20),
-                                              ),
-                                            ),
-                                            child: Column(
-                                              children: [
-                                                Container(
-                                                  height: 520,
-                                                  padding: EdgeInsets.only(
-                                                    left: Dimensions.width20,
-                                                    right: Dimensions.width20,
-                                                    top: Dimensions.height20,
-                                                  ),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      const PaymentOptionButton(
-                                                          icon: Icons.money,
-                                                          title:
-                                                              'cash on delivery',
-                                                          subTitle:
-                                                              'you pay after getting the delivery',
-                                                          index: 0),
-                                                      SizedBox(
-                                                          height: Dimensions
-                                                              .height10),
-                                                      const PaymentOptionButton(
-                                                          icon: Icons
-                                                              .paypal_outlined,
-                                                          title:
-                                                              'digital payment',
-                                                          subTitle:
-                                                              'safer and faster way of payment',
-                                                          index: 1),
-                                                      SizedBox(
-                                                          height: Dimensions
-                                                              .height30),
-                                                      Text(
-                                                        "Delivery Options",
-                                                        style: robotoMedium,
-                                                      ),
-                                                      SizedBox(
-                                                          height: Dimensions
-                                                                  .height10 /
-                                                              2),
-                                                      DeliveryOptions(
-                                                          title:
-                                                              "home delivery",
-                                                          value: "delivery",
-                                                          amount: double.parse(
-                                                              Get.find<
-                                                                      CartController>()
-                                                                  .totalAmount
-                                                                  .toString()),
-                                                          isFree: false),
-                                                      SizedBox(
-                                                          height: Dimensions
-                                                                  .height10 /
-                                                              2),
-                                                      const DeliveryOptions(
-                                                          title: "take away",
-                                                          value: "take away",
-                                                          amount: 10,
-                                                          isFree: true),
-                                                      SizedBox(
-                                                          height: Dimensions
-                                                              .height20),
-                                                      Text(
-                                                        'Additional Notes',
-                                                        style: robotoMedium,
-                                                      ),
-                                                      SizedBox(
-                                                          height: Dimensions
-                                                              .height10),
-                                                      AppTextField(
-                                                          maxLines: true,
-                                                          textController:
-                                                              _noteController,
-                                                          hintText: '',
-                                                          icon: Icons.note)
-                                                    ],
-                                                  ),
-                                                )
-                                              ],
-                                            ),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(
+                                                Dimensions.radius20),
+                                            topRight: Radius.circular(
+                                                Dimensions.radius20),
                                           ),
                                         ),
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              height: 520,
+                                              padding: EdgeInsets.only(
+                                                left: Dimensions.width20,
+                                                right: Dimensions.width20,
+                                                top: Dimensions.height20,
+                                              ),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  const PaymentOptionButton(
+                                                      icon: Icons.money,
+                                                      title: 'cash on delivery',
+                                                      subTitle:
+                                                          'you pay after getting the delivery',
+                                                      index: 0),
+                                                  SizedBox(
+                                                      height:
+                                                          Dimensions.height10),
+                                                  const PaymentOptionButton(
+                                                      icon:
+                                                          Icons.paypal_outlined,
+                                                      title: 'digital payment',
+                                                      subTitle:
+                                                          'safer and faster way of payment',
+                                                      index: 1),
+                                                  SizedBox(
+                                                      height:
+                                                          Dimensions.height30),
+                                                  Text(
+                                                    "Delivery Options",
+                                                    style: robotoMedium,
+                                                  ),
+                                                  SizedBox(
+                                                      height:
+                                                          Dimensions.height10 /
+                                                              2),
+                                                  DeliveryOptions(
+                                                      title: "home delivery",
+                                                      value: "delivery",
+                                                      amount: double.parse(
+                                                          Get.find<
+                                                                  CartController>()
+                                                              .totalAmount
+                                                              .toString()),
+                                                      isFree: false),
+                                                  SizedBox(
+                                                      height:
+                                                          Dimensions.height10 /
+                                                              2),
+                                                  const DeliveryOptions(
+                                                      title: "take away",
+                                                      value: "take away",
+                                                      amount: 10,
+                                                      isFree: true),
+                                                  SizedBox(
+                                                      height:
+                                                          Dimensions.height20),
+                                                  Text(
+                                                    'Additional Notes',
+                                                    style: robotoMedium,
+                                                  ),
+                                                  SizedBox(
+                                                      height:
+                                                          Dimensions.height10),
+                                                  AppTextField(
+                                                      maxLines: true,
+                                                      textController:
+                                                          _noteController,
+                                                      hintText: '',
+                                                      icon: Icons.note)
+                                                ],
+                                              ),
+                                            )
+                                          ],
+                                        ),
                                       ),
-                                    ],
+                                    ),
                                   );
                                 })
                             .whenComplete(() => orderController
@@ -435,37 +429,42 @@ class CartPage extends StatelessWidget {
                                     .isEmpty) {
                                   Get.toNamed(RouteHelper.getAddress());
                                 } else {
-                                  var location = Get.find<LocationController>()
-                                      .getUserAddress();
-                                  var cart =
-                                      Get.find<CartController>().getItems;
-                                  var user =
-                                      Get.find<UserController>().accountModel;
-                                  PlaceOrderModel placeOrder = PlaceOrderModel(
-                                    cart: cart,
-                                    orderAmount: 100,
-                                    distance: 10.0,
-                                    scheduleAt: '',
-                                    orderNote: orderController.foodNote,
-                                    address: location.address,
-                                    latitude: location.latitude,
-                                    longitude: location.longitude,
-                                    contactPersonName: user!.name,
-                                    contactPersonNumber: user.phone,
-                                    orderType: orderController.orderType,
-                                    paymentMethod:
-                                        orderController.paymentIndex == 0
-                                            ? "cash_on_delivery"
-                                            : "digital_payment",
-                                  );
-                                  print(placeOrder.toJson());
-                                  print(
-                                      "My type is ${placeOrder.toJson()['order_type']}");
-                                  print(
-                                      "My payment method is ${placeOrder.toJson()['payment_method']}");
-                                  // return;
-                                  Get.find<OrderController>()
-                                      .placeOrder(placeOrder, _callBack);
+                                  Get.offNamed(RouteHelper.getPayment(
+                                      "100025",
+                                      Get.find<UserController>()
+                                          .accountModel!
+                                          .id));
+                                  // var location = Get.find<LocationController>()
+                                  //     .getUserAddress();
+                                  // var cart =
+                                  //     Get.find<CartController>().getItems;
+                                  // var user =
+                                  //     Get.find<UserController>().accountModel;
+                                  // PlaceOrderModel placeOrder = PlaceOrderModel(
+                                  //   cart: cart,
+                                  //   orderAmount: 100,
+                                  //   distance: 10.0,
+                                  //   scheduleAt: '',
+                                  //   orderNote: orderController.foodNote,
+                                  //   address: location.address,
+                                  //   latitude: location.latitude,
+                                  //   longitude: location.longitude,
+                                  //   contactPersonName: user!.name,
+                                  //   contactPersonNumber: user.phone,
+                                  //   orderType: orderController.orderType,
+                                  //   paymentMethod:
+                                  //       orderController.paymentIndex == 0
+                                  //           ? "cash_on_delivery"
+                                  //           : "digital_payment",
+                                  // );
+                                  // print(placeOrder.toJson());
+                                  // print(
+                                  //     "My type is ${placeOrder.toJson()['order_type']}");
+                                  // print(
+                                  //     "My payment method is ${placeOrder.toJson()['payment_method']}");
+                                  // // return;
+                                  // Get.find<OrderController>()
+                                  //     .placeOrder(placeOrder, _callBack);
                                 }
                               } else {
                                 Get.toNamed(RouteHelper.getSignIn());

@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/utils/color.dart';
-import 'package:food_delivery/utils/dimensions.dart';
-import 'package:food_delivery/base/custom_button.dart';
-import 'package:food_delivery/routes/route_helper.dart';
+import 'package:foody/utils/color.dart';
+import 'package:foody/utils/dimensions.dart';
+import 'package:foody/base/custom_button.dart';
+import 'package:foody/routes/route_helper.dart';
 
 class OrderSuccessPage extends StatelessWidget {
   final String orderId;

@@ -1,9 +1,6 @@
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/utils/dimensions.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:foody/utils/dimensions.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:food_delivery/controllers/location_controller.dart';
 
 class SearchLocationDialog extends StatelessWidget {
   final GoogleMapController mapController;
@@ -21,6 +18,9 @@ class SearchLocationDialog extends StatelessWidget {
         ),
         child: SizedBox(
           width: Dimensions.screenWidth,
+          child: Container(
+            child: Text("Google map search"),
+          ),
           // child: Container(
           //   child:
           //       TypeAheadField(builder: (context, searchController, focusNode) {

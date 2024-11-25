@@ -1,3 +1,4 @@
+import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
 
 class NoDataPage extends StatelessWidget {
@@ -12,20 +13,25 @@ class NoDataPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Image.asset(
-          img,
-          height: MediaQuery.of(context).size.height * .22,
-          width: MediaQuery.of(context).size.width * .22,
+        // Image.asset(
+        //   img,
+        //   height: MediaQuery.of(context).size.height * .22,
+        //   width: MediaQuery.of(context).size.width * .22,
+        // ),
+        Container(
+          // height: MediaQuery.of(context).size.height * .22,
+          // width: MediaQuery.of(context).size.width * .22,
+          child: Lottie.asset("assets/json/empty.json"),
         ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * .03,
-        ),
+        // SizedBox(
+        //   height: MediaQuery.of(context).size.height * .03,
+        // ),
         Text(
           text,
           style: TextStyle(
-            fontSize: MediaQuery.of(context).size.height * .0175,
-            color: Theme.of(context).disabledColor,
-          ),
+              fontSize: MediaQuery.of(context).size.height * .0175,
+              color: Theme.of(context).disabledColor,
+              fontWeight: FontWeight.w600),
           textAlign: TextAlign.center,
         )
       ],

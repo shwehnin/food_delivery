@@ -3,7 +3,7 @@ import 'small_text.dart';
 import '../utils/color.dart';
 import 'icon_text_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/utils/dimensions.dart';
+import 'package:foody/utils/dimensions.dart';
 
 class AppColumn extends StatelessWidget {
   final String text;

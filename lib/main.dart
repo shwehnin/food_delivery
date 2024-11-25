@@ -1,17 +1,16 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'pages/splash/splash_page.dart';
+import 'package:foody/utils/color.dart';
+import 'package:flutter/foundation.dart';
 import 'helper/helper_notification.dart';
 import 'helper/dependencies.dart' as dep;
 import 'controllers/cart_controller.dart';
-import 'package:food_delivery/utils/color.dart';
-import 'package:food_delivery/routes/route_helper.dart';
+import 'package:foody/routes/route_helper.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:food_delivery/pages/auth/sign_in_page.dart';
-import 'package:food_delivery/pages/auth/sign_up_page.dart';
-import 'package:food_delivery/controllers/popular_product_controller.dart';
+import 'package:foody/controllers/popular_product_controller.dart';
+import 'package:foody/controllers/recommended_product_controller.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:food_delivery/controllers/recommended_product_controller.dart';
 
 Future<dynamic> myBackgroundMessageHandler(RemoteMessage message) async {
   print(
@@ -23,6 +22,7 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationPlugin =
 void main() async {
   // setPathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   await dep.init();
   try {
     if (GetPlatform.isMobile) {
@@ -32,7 +32,9 @@ void main() async {
       FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
     }
   } catch (e) {
-    print(e);
+    if (kDebugMode) {
+      print(e);
+    }
   }
   runApp(const MyApp());
 }

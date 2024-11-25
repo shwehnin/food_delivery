@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/utils/styles.dart';
-import 'package:food_delivery/utils/dimensions.dart';
-import 'package:food_delivery/controllers/order_controller.dart';
+import 'package:foody/utils/styles.dart';
+import 'package:foody/utils/dimensions.dart';
+import 'package:foody/controllers/order_controller.dart';
 
 class DeliveryOptions extends StatelessWidget {
   final String title;

@@ -1,17 +1,17 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/utils/color.dart';
-import 'package:food_delivery/utils/dimensions.dart';
-import 'package:food_delivery/widgets/app_icon.dart';
-import 'package:food_delivery/widgets/big_text.dart';
-import 'package:food_delivery/base/custom_loader.dart';
-import 'package:food_delivery/base/custom_app_bar.dart';
-import 'package:food_delivery/routes/route_helper.dart';
-import 'package:food_delivery/widgets/account_widget.dart';
-import 'package:food_delivery/controllers/user_controller.dart';
-import 'package:food_delivery/controllers/cart_controller.dart';
-import 'package:food_delivery/controllers/auth_controller.dart';
-import 'package:food_delivery/controllers/location_controller.dart';
+import 'package:foody/utils/color.dart';
+import 'package:foody/utils/dimensions.dart';
+import 'package:foody/widgets/app_icon.dart';
+import 'package:foody/widgets/big_text.dart';
+import 'package:foody/base/custom_loader.dart';
+import 'package:foody/base/custom_app_bar.dart';
+import 'package:foody/routes/route_helper.dart';
+import 'package:foody/widgets/account_widget.dart';
+import 'package:foody/controllers/user_controller.dart';
+import 'package:foody/controllers/cart_controller.dart';
+import 'package:foody/controllers/auth_controller.dart';
+import 'package:foody/controllers/location_controller.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
@@ -140,19 +140,19 @@ class AccountPage extends StatelessWidget {
                                 height: Dimensions.height20,
                               ),
                               // message
-                              AccountWidget(
-                                text: BigText(text: "Hnin Hnin Wai"),
-                                appIcon: AppIcon(
-                                  icon: Icons.message_outlined,
-                                  backgroundColor: Colors.redAccent,
-                                  iconColor: Colors.white,
-                                  iconSize: Dimensions.height10 * 5 / 2,
-                                  size: Dimensions.height10 * 5,
-                                ),
-                              ),
-                              SizedBox(
-                                height: Dimensions.height20,
-                              ),
+                              // AccountWidget(
+                              //   text: BigText(text: "Hnin Hnin Wai"),
+                              //   appIcon: AppIcon(
+                              //     icon: Icons.message_outlined,
+                              //     backgroundColor: Colors.redAccent,
+                              //     iconColor: Colors.white,
+                              //     iconSize: Dimensions.height10 * 5 / 2,
+                              //     size: Dimensions.height10 * 5,
+                              //   ),
+                              // ),
+                              // SizedBox(
+                              //   height: Dimensions.height20,
+                              // ),
                               // message
                               GestureDetector(
                                 onTap: () {
@@ -195,7 +195,7 @@ class AccountPage extends StatelessWidget {
                     children: [
                       Container(
                         width: double.maxFinite,
-                        height: Dimensions.height20 * 8,
+                        height: Dimensions.height20 * 15,
                         margin: EdgeInsets.only(
                             left: Dimensions.width20,
                             right: Dimensions.width20),
@@ -204,7 +204,9 @@ class AccountPage extends StatelessWidget {
                               BorderRadius.circular(Dimensions.radius20),
                           image: const DecorationImage(
                             fit: BoxFit.cover,
-                            image: AssetImage("assets/images/pancake.jpeg"),
+                            image: AssetImage(
+                              "assets/images/pp.png",
+                            ),
                           ),
                         ),
                       ),

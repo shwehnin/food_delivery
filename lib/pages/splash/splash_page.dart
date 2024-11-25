@@ -1,12 +1,12 @@
 import 'dart:async';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/utils/dimensions.dart';
-import 'package:food_delivery/widgets/big_text.dart';
-import 'package:food_delivery/routes/route_helper.dart';
+import 'package:foody/utils/dimensions.dart';
+import 'package:foody/widgets/big_text.dart';
+import 'package:foody/routes/route_helper.dart';
+import 'package:foody/controllers/auth_controller.dart';
 import '../../controllers/popular_product_controller.dart';
 import '../../controllers/recommended_product_controller.dart';
-import 'package:food_delivery/controllers/auth_controller.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -49,7 +49,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
             scale: animation,
             child: Center(
               child: Image.asset(
-                "assets/images/pancake.jpeg",
+                "assets/icon/icon.png",
                 width: Dimensions.splashImg,
               ),
             ),

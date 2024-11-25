@@ -1,17 +1,18 @@
 import 'package:get/get.dart';
 import 'pick_address_map.dart';
+import '../../base/custom_loader.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/utils/color.dart';
-import 'package:food_delivery/widgets/big_text.dart';
-import 'package:food_delivery/utils/dimensions.dart';
-import 'package:food_delivery/base/custom_app_bar.dart';
-import 'package:food_delivery/routes/route_helper.dart';
-import 'package:food_delivery/models/address_model.dart';
-import 'package:food_delivery/widgets/app_text_field.dart';
+import 'package:foody/utils/color.dart';
+import 'package:foody/widgets/big_text.dart';
+import 'package:foody/utils/dimensions.dart';
+import 'package:foody/base/custom_app_bar.dart';
+import 'package:foody/routes/route_helper.dart';
+import 'package:foody/models/address_model.dart';
+import 'package:foody/widgets/app_text_field.dart';
+import 'package:foody/controllers/user_controller.dart';
+import 'package:foody/controllers/auth_controller.dart';
+import 'package:foody/controllers/location_controller.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:food_delivery/controllers/user_controller.dart';
-import 'package:food_delivery/controllers/auth_controller.dart';
-import 'package:food_delivery/controllers/location_controller.dart';
 
 class AddAddressPage extends StatefulWidget {
   const AddAddressPage({super.key});
@@ -21,16 +22,16 @@ class AddAddressPage extends StatefulWidget {
 }
 
 class _AddAddressPageState extends State<AddAddressPage> {
-  TextEditingController _addressController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
   final TextEditingController _contactPersonNameController =
       TextEditingController();
   final TextEditingController _contactPersonNumberController =
       TextEditingController();
   late bool _isLogged;
   CameraPosition _cameraPosition =
-      const CameraPosition(target: LatLng(45.51563, -122.677433), zoom: 17);
+      const CameraPosition(target: LatLng(45.521563, -122.677433), zoom: 17);
 
-  late LatLng _initialPosition = const LatLng(45.51563, -122.677433);
+  late LatLng _initialPosition = const LatLng(45.521563, -122.677433);
 
   @override
   void initState() {
@@ -70,7 +71,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: 'Address'),
+      appBar: const CustomAppBar(title: 'My Address'),
       body: GetBuilder<UserController>(builder: (userController) {
         if (userController.accountModel != null &&
             _contactPersonNameController.text.isEmpty) {
@@ -131,8 +132,23 @@ class _AddAddressPageState extends State<AddAddressPage> {
                       onCameraMove: ((position) => _cameraPosition = position),
                       onMapCreated: (GoogleMapController controller) {
                         locationController.setMapController(controller);
+                        if (Get.find<LocationController>()
+                            .addressList
+                            .isEmpty) {
+                          // locationController.getCurrentLocation(true,
+                          //     mapController: controller);
+                        }
                       },
-                    )
+                    ),
+                    Center(
+                      child: !locationController.loading
+                          ? Icon(
+                              Icons.location_on,
+                              size: 60,
+                              color: AppColors.mainColor,
+                            )
+                          : const CustomLoader(),
+                    ),
                   ]),
                 ),
                 Padding(
@@ -261,7 +277,8 @@ class _AddAddressPageState extends State<AddAddressPage> {
                         addressType: locationController.addressTypeList[
                             locationController.addressTypeIndex],
                         contactPersonName: _contactPersonNameController.text,
-                        contactPersonNumber: _contactPersonNameController.text,
+                        contactPersonNumber:
+                            _contactPersonNumberController.text,
                         address: _addressController.text,
                         latitude:
                             locationController.position.latitude.toString(),

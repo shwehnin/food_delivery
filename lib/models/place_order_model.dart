@@ -1,4 +1,4 @@
-import 'package:food_delivery/models/cart_model.dart';
+import 'package:foody/models/cart_model.dart';
 
 class PlaceOrderModel {
   List<CartModel>? _cart;

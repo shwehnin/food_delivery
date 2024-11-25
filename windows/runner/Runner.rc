@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.hninhninwai.xyz" "\0"
-            VALUE "FileDescription", "food_delivery" "\0"
+            VALUE "FileDescription", "foody" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "food_delivery" "\0"
+            VALUE "InternalName", "foody" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 com.hninhninwai.xyz. All rights reserved." "\0"
-            VALUE "OriginalFilename", "food_delivery.exe" "\0"
-            VALUE "ProductName", "food_delivery" "\0"
+            VALUE "OriginalFilename", "foody.exe" "\0"
+            VALUE "ProductName", "foody" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

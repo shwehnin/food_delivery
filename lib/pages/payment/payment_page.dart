@@ -2,12 +2,12 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import '../../models/order_model.dart';
-import 'package:food_delivery/utils/color.dart';
-import 'package:food_delivery/utils/dimensions.dart';
+import 'package:foody/utils/color.dart';
+import 'package:foody/utils/dimensions.dart';
+import 'package:foody/base/custom_loader.dart';
+import 'package:foody/routes/route_helper.dart';
+import 'package:foody/utils/app_constants.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:food_delivery/base/custom_loader.dart';
-import 'package:food_delivery/routes/route_helper.dart';
-import 'package:food_delivery/utils/app_constants.dart';
 
 class PaymentPage extends StatefulWidget {
   final OrderModel orderModel;

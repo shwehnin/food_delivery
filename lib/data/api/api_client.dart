@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:food_delivery/utils/app_constants.dart';
+import 'package:foody/utils/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiClient extends GetConnect implements GetxService {

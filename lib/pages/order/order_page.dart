@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/utils/color.dart';
-import 'package:food_delivery/utils/dimensions.dart';
-import 'package:food_delivery/base/custom_app_bar.dart';
-import 'package:food_delivery/pages/order/view_order.dart';
-import 'package:food_delivery/controllers/auth_controller.dart';
-import 'package:food_delivery/controllers/order_controller.dart';
+import 'package:foody/utils/color.dart';
+import 'package:foody/utils/dimensions.dart';
+import 'package:foody/base/custom_app_bar.dart';
+import 'package:foody/pages/order/view_order.dart';
+import 'package:foody/controllers/auth_controller.dart';
+import 'package:foody/controllers/order_controller.dart';
 
 class OrderPage extends StatefulWidget {
   const OrderPage({super.key});
@@ -25,6 +25,8 @@ class _OrderPageState extends State<OrderPage> with TickerProviderStateMixin {
     if (_isLoggedIn) {
       _tabController = TabController(length: 2, vsync: this);
       Get.find<OrderController>().getOrderList();
+    } else {
+      _tabController = TabController(length: 2, vsync: this);
     }
   }
 
