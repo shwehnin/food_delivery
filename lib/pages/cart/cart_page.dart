@@ -1,3 +1,4 @@
+import 'package:foody/models/place_order_model.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:foody/utils/color.dart';
@@ -429,42 +430,42 @@ class CartPage extends StatelessWidget {
                                     .isEmpty) {
                                   Get.toNamed(RouteHelper.getAddress());
                                 } else {
-                                  Get.offNamed(RouteHelper.getPayment(
-                                      "100025",
-                                      Get.find<UserController>()
-                                          .accountModel!
-                                          .id));
-                                  // var location = Get.find<LocationController>()
-                                  //     .getUserAddress();
-                                  // var cart =
-                                  //     Get.find<CartController>().getItems;
-                                  // var user =
-                                  //     Get.find<UserController>().accountModel;
-                                  // PlaceOrderModel placeOrder = PlaceOrderModel(
-                                  //   cart: cart,
-                                  //   orderAmount: 100,
-                                  //   distance: 10.0,
-                                  //   scheduleAt: '',
-                                  //   orderNote: orderController.foodNote,
-                                  //   address: location.address,
-                                  //   latitude: location.latitude,
-                                  //   longitude: location.longitude,
-                                  //   contactPersonName: user!.name,
-                                  //   contactPersonNumber: user.phone,
-                                  //   orderType: orderController.orderType,
-                                  //   paymentMethod:
-                                  //       orderController.paymentIndex == 0
-                                  //           ? "cash_on_delivery"
-                                  //           : "digital_payment",
-                                  // );
-                                  // print(placeOrder.toJson());
-                                  // print(
-                                  //     "My type is ${placeOrder.toJson()['order_type']}");
-                                  // print(
-                                  //     "My payment method is ${placeOrder.toJson()['payment_method']}");
-                                  // // return;
-                                  // Get.find<OrderController>()
-                                  //     .placeOrder(placeOrder, _callBack);
+                                  // Get.offNamed(RouteHelper.getPayment(
+                                  //     "100025",
+                                  //     Get.find<UserController>()
+                                  //         .accountModel!
+                                  //         .id));
+                                  var location = Get.find<LocationController>()
+                                      .getUserAddress();
+                                  var cart =
+                                      Get.find<CartController>().getItems;
+                                  var user =
+                                      Get.find<UserController>().accountModel;
+                                  PlaceOrderModel placeOrder = PlaceOrderModel(
+                                    cart: cart,
+                                    orderAmount: 100,
+                                    distance: 10.0,
+                                    scheduleAt: '',
+                                    orderNote: orderController.foodNote,
+                                    address: location.address,
+                                    latitude: location.latitude,
+                                    longitude: location.longitude,
+                                    contactPersonName: user!.name,
+                                    contactPersonNumber: user.phone,
+                                    orderType: orderController.orderType,
+                                    paymentMethod:
+                                        orderController.paymentIndex == 0
+                                            ? "cash_on_delivery"
+                                            : "digital_payment",
+                                  );
+                                  print(placeOrder.toJson());
+                                  print(
+                                      "My type is ${placeOrder.toJson()['order_type']}");
+                                  print(
+                                      "My payment method is ${placeOrder.toJson()['payment_method']}");
+                                  // return;
+                                  Get.find<OrderController>()
+                                      .placeOrder(placeOrder, _callBack);
                                 }
                               } else {
                                 Get.toNamed(RouteHelper.getSignIn());

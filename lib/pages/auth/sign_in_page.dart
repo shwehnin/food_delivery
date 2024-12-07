@@ -98,6 +98,7 @@ class SignInPage extends StatelessWidget {
                     ),
                     // your phone
                     AppTextField(
+                      keyboardType: TextInputType.phone,
                       textController: phoneController,
                       hintText: 'Phone',
                       icon: Icons.phone,
@@ -108,13 +109,13 @@ class SignInPage extends StatelessWidget {
 
                     // your password
                     AppTextField(
-                      isObscure: !authController.showPassword,
+                      isObscure: authController.showPassword,
                       textController: passwordController,
                       hintText: 'Password',
                       icon: Icons.password,
                       suffixIcon: authController.showPassword
-                          ? Icons.visibility
-                          : Icons.visibility_off,
+                          ? Icons.visibility_off
+                          : Icons.visibility,
                     ),
 
                     SizedBox(

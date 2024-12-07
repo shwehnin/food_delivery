@@ -11,6 +11,7 @@ class AppTextField extends StatelessWidget {
   final IconData? suffixIcon;
   bool isObscure;
   bool maxLines;
+  TextInputType keyboardType;
   AppTextField({
     super.key,
     required this.textController,
@@ -19,6 +20,7 @@ class AppTextField extends StatelessWidget {
     this.isObscure = false,
     this.maxLines = false,
     this.suffixIcon,
+    this.keyboardType = TextInputType.text,
   });
 
   @override
@@ -41,6 +43,7 @@ class AppTextField extends StatelessWidget {
         maxLines: maxLines ? null : 1,
         obscureText: isObscure ? true : false,
         controller: textController,
+        keyboardType: keyboardType,
         decoration: InputDecoration(
           hintText: hintText,
           prefixIcon: Icon(

@@ -2,7 +2,7 @@ name: foody
 description: "food delivery app"
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.0+1
+version: 1.2.0+1
 
 environment:
   sdk: ^3.6.0-55.0.dev
