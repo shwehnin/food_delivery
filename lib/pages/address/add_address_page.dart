@@ -289,6 +289,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                           .addAddress(_addressModel)
                           .then((response) {
                         if (response.isSuccess) {
+                          print("Address Resp ${response.isSuccess}");
                           Get.toNamed(RouteHelper.getInitial());
                           Get.snackbar("Address", "Address Successfully");
                         } else {

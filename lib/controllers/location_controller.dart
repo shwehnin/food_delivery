@@ -178,6 +178,7 @@ class LocationController extends GetxController implements GetxService {
     update();
     Response response = await locationRepo.addAddress(addressModel);
     ResponseModel responseModel;
+    print("Location status code ${response.body}");
     if (response.statusCode == 200) {
       await getAddressList();
       String message = response.body["message"];
