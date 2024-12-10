@@ -1,6 +1,6 @@
 class AppConstants {
   static const String APP_NAME = "DBFood";
-  static const int APP_VERSION = 1;
+  static const int APP_VERSION = 2;
   static const String BASE_URL =
       "http://13.215.47.197"; // https://foody.hninhninwai.xyz
   static const String POPULAR_PRODUCT_URI = "/api/v1/products/popular";
